@@ -9,13 +9,14 @@ export function uploadPic() {
         }
     })
 }
-export function login() {
-    service.request({
-        method: 'post',
-        url: '/admin/login.do',
-        data: {
-            username:'admin',
-            password:'lqh666***',
-        }
-    })
+export function login(data) {
+    // service.request({
+    //     method: 'post',
+    //     url: '/admin/login.do',
+    //     data: {
+    //         username: "admin",
+    //         password: "lqh666***",
+    //     }
+    // })
+    return service.post('/admin/login.do',data)
 }

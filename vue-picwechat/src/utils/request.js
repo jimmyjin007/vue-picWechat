@@ -1,15 +1,17 @@
 import axios from 'axios'
 // 创建axios实例
 const BASEURL = process.env.NODE_ENV === "production" ? "" : "/api";
+const BASE = 'https://awake.zeabur.app/pictureShare'
 const service = axios.create({
     // 本地测试 相对路径
     // baseURL: '/admin/pdctodo/services', // 测试地址
-    baseURL: BASEURL,
+    baseURL: BASE,
     timeout: 60 * 60 * 1000 * 1 // 请求超时时间 设为1分钟
 })
 
 // 添加请求拦截器
 service.interceptors.request.use(function (config) {
+  debugger
     // 在发送请求之前做些什么
     return config;
   }, function (error) {
