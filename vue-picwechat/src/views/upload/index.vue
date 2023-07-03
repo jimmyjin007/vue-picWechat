@@ -21,13 +21,14 @@
     </div>
 </template>
 <script>
-import { uploadPic,login } from "@/api/upload.js";
+import api from "@/api/upload.js";
 export default {
   name: "",
   data() {
     return {
       fileList: [],
-      headers:{ "Contene-Type": "multipart/form-data" }
+      headers:{ "Contene-Type": "multipart/form-data"},
+      token:"",
     }
   },
   methods: {
@@ -35,20 +36,22 @@ export default {
       let reqData = {
         username: "admin",
         password: "lqh666***",
-      };
-      login(reqData).then((res) => {
-        console.log(res);
+      }
+      api.login(reqData).then((res) => {
+        this.token = res.data.data
+        this.$set(this.headers,"token",res.data.data)
+        console.log("请求成功",res.data.data)
       }).catch((err) => {
-        console.log(err);
-      })
+        console.log("请求失败",err)
+      }).then(()=>{})
     },
-    submit() {
-      login().then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err)
-      }).then(() => {})
-    },
+    // submit() {
+    //   login().then((res) => {
+    //     console.log(res);
+    //   }).catch((err) => {
+    //     console.log(err)
+    //   }).then(() => {})
+    // },
     handlePreview(file) {
       console.log(file);
     }, 
